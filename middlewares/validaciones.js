@@ -25,7 +25,7 @@ function validarEdad(req, res, next) {
     next();
 }
 
-// Exportamos las funciones para que se puedan usar en el archivo de rutas
+
 module.exports = {
     validarNombre,
     validarCorreo,

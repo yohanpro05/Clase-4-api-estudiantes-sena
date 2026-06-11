@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
-// 1. CORREGIDO: Importamos las validaciones correctas de estudiantes
+
 const { validarNombre, validarCorreo, validarEdad } = require('../middlewares/validaciones');
 
-// datos simulados de estudiantes
+
 let estudiantes = [
     { id: 1, nombre: "Edi Yohan", correo: "edyohan@example.com", edad: 25 },
 ];
@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
     res.json(estudiantes);
 });
 
-// 2. CORREGIDO: Añadimos [validarNombre, validarCorreo, validarEdad] en orden
+// 2. POST: Añadimos las validaciones al crear un nuevo estudiante
 router.post('/', [validarNombre, validarCorreo, validarEdad], (req, res) => {
     const { nombre, correo, edad } = req.body;
     const nuevoEstudiante = {
@@ -30,7 +30,7 @@ router.post('/', [validarNombre, validarCorreo, validarEdad], (req, res) => {
     });
 });
 
-// 3. CORREGIDO: Añadimos las validaciones también al PUT y cambiamos .find por .findIndex
+// 3. PUT 
 router.put('/:id', [validarNombre, validarCorreo, validarEdad], (req, res) => {
     const { id } = req.params;
     const { nombre, correo, edad } = req.body;
@@ -49,7 +49,7 @@ router.put('/:id', [validarNombre, validarCorreo, validarEdad], (req, res) => {
     });
 });
 
-// 4. CORREGIDO: Cambiamos .find por .findIndex para que funcione bien el borrado
+// 4. DELETE
 router.delete('/:id', (req, res) => {
     const { id } = req.params;
     
